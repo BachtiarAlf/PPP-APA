@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jenna Ortega - UI/UX Designer Portfolio</title>
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & RESET
+       ========================================================================== */
+    :root {
+      --bg-dark: #030a16;
+      --bg-header: #050e1d;
+      --bg-card: #0a1727;
+      --bg-brand: #040c1a;
+      --primary-blue: #1b84ff;
+      --primary-blue-hover: #006ae6;
+      --text-white: #ffffff;
+      --text-muted: #8e9eb3;
+      --text-dark: #0f172a;
+      --text-sub: #64748b;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --transition: all 0.3s ease;
+      --container-width: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==========================================================================
+       REUSABLE COMPONENTS
+       ========================================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-blue);
+      color: var(--text-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-blue-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(27, 132, 255, 0.3);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background-color: rgba(27, 132, 255, 0.12);
+      border: 1px solid rgba(27, 132, 255, 0.25);
+      border-radius: 4px;
+      color: var(--primary-blue);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+    }
+
+    .highlight-blue {
+      color: var(--primary-blue);
+    }
+
+    /* ==========================================================================
+       HEADER / NAVBAR
+       ========================================================================== */
+    .header {
+      width: 100%;
+      padding: 24px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(3, 10, 22, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--text-white);
+    }
+
+    .logo img {
+      height: 28px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-white);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary-blue);
+      border-radius: 2px;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 60px 0 100px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 80% 30%, rgba(27, 132, 255, 0.08) 0%, rgba(3, 10, 22, 0) 60%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      max-width: 540px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .typing-text {
+      color: var(--primary-blue);
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      background-color: var(--primary-blue);
+      margin-left: 4px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-white);
+      transition: var(--transition);
+    }
+
+    .social-icon.facebook {
+      background-color: #1877f2;
+    }
+
+    .social-icon.dribbble {
+      background-color: #ea4c89;
+    }
+
+    .social-icon.linkedin {
+      background-color: #0077b5;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-bg-lines {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      z-index: 1;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .hero-img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      object-fit: contain;
+    }
+
+    .floating-orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #3a506b, #0b1320);
+      box-shadow: inset -5px -5px 15px rgba(0,0,0,0.8), 0 10px 20px rgba(0,0,0,0.5);
+      z-index: 3;
+    }
+
+    .orb-1 {
+      width: 40px;
+      height: 40px;
+      top: 15%;
+      left: 10%;
+    }
+
+    .orb-2 {
+      width: 55px;
+      height: 55px;
+      bottom: 25%;
+      right: 5%;
+    }
+
+    /* ==========================================================================
+       BRAND LOGOS SECTION
+       ========================================================================== */
+    .brands-section {
+      background-color: var(--bg-brand);
+      padding: 32px 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brands-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      opacity: 0.85;
+      transition: var(--transition);
+    }
+
+    .brand-item:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .brand-item img {
+      height: 26px;
+      width: auto;
+    }
+
+    /* ==========================================================================
+       ABOUT US SECTION
+       ========================================================================== */
+    .about-section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image-card {
+      position: relative;
+      border-radius: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .about-img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .radial-bg-decoration {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 220px;
+      height: 220px;
+      z-index: 0;
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .radial-bg-decoration-right {
+      position: absolute;
+      top: 10%;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      z-index: 0;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: left;
+    }
+
+    .stat-number {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       MY WORK / RECENT PROJECTS
+       ========================================================================== */
+    .projects-section {
+      padding: 80px 0 100px;
+      background-color: rgba(4, 12, 26, 0.5);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .project-card {
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-img-wrapper {
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.04);
+    }
+
+    .project-info {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #ffffff;
+      color: var(--text-dark);
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #0f172a;
+    }
+
+    .project-subtitle {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .project-arrow-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--primary-blue);
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-arrow-btn {
+      background-color: var(--primary-blue-hover);
+      transform: translateX(3px);
+    }
+
+    .pagination-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dot {
+      height: 8px;
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      width: 24px;
+      background-color: var(--primary-blue);
+    }
+
+    .dot:not(.active) {
+      width: 8px;
+    }
+
+    /* ==========================================================================
+       SERVICES SECTION
+       ========================================================================== */
+    .services-section {
+      padding: 80px 0 100px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(27, 132, 255, 0.4);
+    }
+
+    .service-img-wrapper {
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+    }
+
+    .service-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-title {
+      padding: 16px;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      color: var(--text-white);
+    }
+
+    /* ==========================================================================
+       FOOTER SECTION
+       ========================================================================== */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border-color);
+      background-color: #020710;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN (MEDIA QUERIES)
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-image-card {
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-header);
+        flex-direction: column;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-content {
+        margin: 0 auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+
+      .brands-flex {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER / NAVBAR
+       ========================================================================== -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <img src="assets/Logo.jpg" alt="Jenna Logo" id="logo-img">
+        <span>ZAKDEV</span>
+      </a>
+
+        <nav>
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="nav-link active">HOME</a></li>
+            <li><a href="#about" class="nav-link">ABOUT ME</a></li>
+            <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+            <li><a href="#services" class="nav-link">SERVICES</a></li>
+            <li><a href="#contact" class="nav-link">CONTACT</a></li>
+          </ul>
+        </nav>
+
+      
+        <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Menu"></button>
+          <a href="#contact" class="btn btn-primary" style="padding: 10px 22px;font-size: 10px;">HUBUNGI</a>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" e>y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+            <div style="display: flex; align-items: center; gap: 16px;"></div>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <span class="badge">JENNA ORTEGA</span>
+        <h1 class="hero-title">
+          HAY! I'M JENNA<br>
+          <span class="typing-text" id="typing-text">I'M A DESIGNER</span><span class="cursor"></span>
+        </h1>
+        <p class="hero-desc">
+          Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            GET IN TOUCH
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <div class="social-links">
+            <a href="#" class="social-icon facebook" aria-label="Facebook">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon dribbble" aria-label="Dribbble">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm9.94 11a9.98 9.98 0 0 0-4.088-6.851c1.554 2.11 2.652 4.588 3.12 6.851h0.968zm-2.88-8.118a9.957 9.957 0 0 0-6.196-2.382c0.23 2.502 0.887 5.097 1.93 7.375 1.832-2.146 3.284-3.882 4.266-4.993zm-8.06-1.382c5.523 0 10 4.477 10 10 0 1.252-0.23 2.451-0.65 3.559a17.26 17.26 0 0 0-4.32-6.52 18.06 18.06 0 0 0-2.22-7.039zm-2.11 0.697a19.8 19.8 0 0 1 2.06 6.574A19.46 19.46 0 0 1 3.54 11.23a9.96 9.96 0 0 1 5.35-8.803zm-5.38 10.303a17.65 17.65 0 0 0 7.02-2.31 15.42 15.42 0 0 1 4.14 6.26 10.01 10.01 0 0 1-11.16-3.95zm6.81 9.29c3.04 0 5.81-1.35 7.69-3.48a13.62 13.62 0 0 0-3.72-5.59 19.78 19.78 0 0 0-6.42 2.11A9.97 9.97 0 0 0 10.32 21.8zm-2.32-0.68a10.01 10.01 0 0 1-5.9-6.32 19.2 19.2 0 0 0 5.9 2.22v4.1remz"/>
+              </svg>
+            </a>
+            <a href="#" class="social-icon linkedin" aria-label="LinkedIn">
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-image-wrapper">
+        <!-- Background Arch/Concentric Circle Lines -->
+        <svg class="hero-bg-lines" viewBox="0 0 400 400" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1">
+          <circle cx="200" cy="200" r="180" stroke-dasharray="4 4" />
+          <circle cx="200" cy="200" r="150" />
+          <circle cx="200" cy="200" r="120" stroke-dasharray="2 2" />
+          <circle cx="200" cy="200" r="90" />
+        </svg>
+
+        <!-- Floating spheres -->
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+
+        <!-- Main Hero Image -->
+        <img src="assets/hero-jenna.png" alt="Jenna Ortega Hero Image" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BRAND LOGOS SECTION
+       ========================================================================== -->
+  <section class="brands-section">
+    <div class="container brands-flex">
+      <div class="brand-item">
+        <img src="https://cdn.iconscout.com/icon/free/png-512/free-logo-logo-icon-svg-download-png-675847.png" alt="logoipsum">
+      </div>
+      <div class="brand-item">
+        <img src="https://cdn.iconscout.com/icon/free/png-512/free-logo-icon-svg-download-png-226120.png" alt="LOGOIPSUM">
+      </div>
+      <div class="brand-item">
+        <img src="https://cdn.iconscout.com/icon/free/png-512/free-logo-icon-svg-download-png-226393.png?f=webp&w=512" alt="logoipsum">
+      </div>
+      <div class="brand-item">
+        <img src="https://cdn.iconscout.com/icon/free/png-512/free-dropbox-logo-icon-svg-download-png-9343746.png?f=webp&w=512" alt="LOGOIPSUM">
+      </div>
+      <div class="brand-item">
+        <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/logo-logo-icon-svg-download-png-709822.png?f=webp&w=512" alt="logoipsum">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ABOUT US SECTION
+       ========================================================================== -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-image-card">
+        <!-- Radial decorative SVG behind image -->
+        <svg class="radial-bg-decoration" viewBox="0 0 200 200" fill="none" stroke="#1b84ff" stroke-width="1">
+          <circle cx="100" cy="100" r="90" stroke-dasharray="2 4" />
+          <circle cx="100" cy="100" r="70" />
+          <circle cx="100" cy="100" r="50" stroke-dasharray="3 3" />
+        </svg>
+
+        <img src="assets/about-jenna.png" alt="About Jenna Ortega" class="about-img">
+      </div>
+
+      <div class="about-content">
+        <!-- Top Right Decorative Pattern -->
+        <svg class="radial-bg-decoration-right" viewBox="0 0 200 200" fill="none" stroke="#1b84ff" stroke-width="1">
+          <circle cx="100" cy="100" r="80" stroke-dasharray="2 3" />
+          <circle cx="100" cy="100" r="50" />
+        </svg>
+
+        <span class="badge">ABOUT US</span>
+        <h2 class="section-title">
+          I AM AVAILABLE FOR <span class="highlight-blue">UI UX DESIGN</span> PROJECT
+        </h2>
+        <p class="about-desc">
+          The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+        </p>
+
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-number">280+</div>
+            <div class="stat-label">Google Review</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">49+</div>
+            <div class="stat-label">Awwward Winning</div>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn btn-primary">
+          GET IN TOUCH
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       MY WORK / RECENT PROJECTS SECTION
+       ========================================================================== -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <span class="badge">MY WORK</span>
+      <h2 class="section-title">RECENT PROJECT</h2>
+
+      <div class="projects-grid">
+        <!-- Project Card 1 -->
+        <div class="project-card">
+          <div class="project-img-wrapper">
+            <img src="assets/project-1.jpg" alt="Digital Graphic Apps Web Project" class="project-img">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Website Design</h3>
+              <p class="project-subtitle">Web Design, App Design</p>
+            </div>
+            <a href="#" class="project-arrow-btn" aria-label="View Project Details">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card">
+          <div class="project-img-wrapper">
+            <img src="assets/project-2.jpg" alt="Crypto Currency Web Project" class="project-img">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Website Design</h3>
+              <p class="project-subtitle">Web Design, App Design</p>
+            </div>
+            <a href="#" class="project-arrow-btn" aria-label="View Project Details">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card">
+          <div class="project-img-wrapper">
+            <img src="assets/project-3.jpg" alt="Dark Dashboard UI Project" class="project-img">
+          </div>
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Website Design</h3>
+              <p class="project-subtitle">Web Design, App Design</p>
+            </div>
+            <a href="#" class="project-arrow-btn" aria-label="View Project Details">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Slider Indicators -->
+      <div class="pagination-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SERVICES SECTION
+       ========================================================================== -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <span class="badge">SERVICES</span>
+      <h2 class="section-title">
+        DESIGN <span class="highlight-blue">SERVICES</span> I AM PROVIDING
+      </h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="assets/service-1.jpg" alt="Web Design" class="service-img">
+          </div>
+          <div class="service-title">Web Design</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="assets/service-2.jpg" alt="UI/UX Design" class="service-img">
+          </div>
+          <div class="service-title">UI/UX Design</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="assets/service-3.jpg" alt="App Design" class="service-img">
+          </div>
+          <div class="service-title">App Design</div>
+        </div>
+
+        <div class="service-card">
+          <div class="service-img-wrapper">
+            <img src="assets/service-4.jpg" alt="Business Strategy" class="service-img">
+          </div>
+          <div class="service-title">Business Strategy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER SECTION
+       ========================================================================== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <p>&copy; 2026 Jenna Ortega. All rights reserved. Designed with Pixel Precision.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT
+       ========================================================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Navigation Toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+          navLinks.classList.toggle('show');
+        });
+      }
+
+      // Dynamic Animated Typing Effect for Headline
+      const typingTextElement = document.getElementById('typing-text');
+      const textToType = "I'M A DESIGNER";
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeEffect() {
+        const currentText = textToType.substring(0, charIndex);
+        typingTextElement.textContent = currentText;
+
+        if (!isDeleting && charIndex < textToType.length) {
+          charIndex++;
+          setTimeout(typeEffect, 120);
+        } else if (isDeleting && charIndex > 0) {
+          charIndex--;
+          setTimeout(typeEffect, 60);
+        } else {
+          isDeleting = !isDeleting;
+          setTimeout(typeEffect, 2000); // Pause before erasing/retyping
+        }
+      }
+
+      // Start typing loop
+      typeEffect();
+
+      // Pagination dots interaction
+      const dots = document.querySelectorAll('.pagination-dots .dot');
+      dots.forEach(dot => {
+        dot.addEventListener('click', function() {
+          dots.forEach(d => d.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
